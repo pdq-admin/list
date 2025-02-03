@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日程管理</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- 添加Font Awesome图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <h1>日程管理</h1>
+            </div>
+            <form id="taskForm" class="task-form">
+                <div class="form-group">
+                    <input type="text" id="taskTitle" placeholder="日程标题" required>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="taskDate" required>
+                </div>
+                <div class="form-group time-picker">
+                    <select id="taskHour" required>
+                        <option value="">时</option>
+                        <script>
+                            for(let i=0; i<24; i++) {
+                                document.write(`<option value="${i.toString().padStart(2,'0')}">${i.toString().padStart(2,'0')}</option>`);
+                            }
+                        </script>
+                    </select>
+                    <span>:</span>
+                    <select id="taskMinute" required>
+                        <option value="">分</option>
+                        <script>
+                            for(let i=0; i<60; i+=5) {
+                                document.write(`<option value="${i.toString().padStart(2,'0')}">${i.toString().padStart(2,'0')}</option>`);
+                            }
+                        </script>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="taskDescription" placeholder="日程描述" rows="4"></textarea>
+                </div>
+                <button type="submit">
+                    <i class="fas fa-plus"></i>
+                    添加日程
+                </button>
+            </form>
+        </aside>
+        
+        <main class="main-content">
+            <div class="tasks-header">
+                <h2>今日日程</h2>
+                <div class="view-options">
+                    <button class="active">全部</button>
+                    <button>待办</button>
+                    <button>已完成</button>
+                </div>
+            </div>
+            <div id="tasks" class="tasks-grid"></div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 
